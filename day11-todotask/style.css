@@ -1,0 +1,17 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+ul{
+    list-style: none;
+}
+h2{
+    color:blueviolet;
+}
+li{
+    margin: 10px;
+}
+.completed{
+    text-decoration: line-through;
+    color:gray;
+}
