@@ -6,8 +6,14 @@
             const input=document.getElementById('todo-input');
             const text=input.value.trim();
             if(text=='') return;
-            todos.push({text,completed:false});
+            // todos.push({text,completed:false});
             input.value='';
+            const inputTime=document.getElementById('todo-input-time');
+            const texts=inputTime.value.trim();
+            if(texts=='')return;
+            todos.push({text,texts,completed:false});
+            input.value='';
+            inputTime.value='';
             saveTodos();
             renderTodos();
         }
@@ -29,8 +35,9 @@
                 if(todo.completed) li.classList.add('completed');
                 li.innerHTML=`
                 <span>${todo.text}</span>
+                <span>${todo.texts}</span>
                 <div>
-                <button onclick="toggleComplete(${index})">✔</button>
+                <button onclick="toggleComplete(${index})" color='green'>✔</button>
                 <button onclick="deleteTodo(${index})">✖</button>
                 </div>
                 `;
