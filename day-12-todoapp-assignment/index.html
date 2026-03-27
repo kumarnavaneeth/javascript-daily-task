@@ -10,7 +10,8 @@
     <h2>Todo App</h2>
     </div>
 <div class="display-field">
-    <input type="text" id='todo-input' placeholder="Enter Task">
+    <input type="text" id='todo-input' onkeyup="validate()" placeholder="Enter Task">
+    <div class="error" id="error">task is mandatory </div>
     <input type="time" id="todo-input-time" placeholder="Enter Time To complete">
     <label><input type="radio"name="status" value="urgent">Urgent</label>
     <label><input type="radio" name="status" value="NotUrgent">notUrgent</label>

@@ -18,6 +18,13 @@ function addTodo() {
     saveTodos();
     renderTodos();
 }
+function validate(){
+   // console.log(event.target.value);
+    const errorDiv=document.getElementById('error');//instead of this we can declare globally
+    errorDiv.style.display=(event.target.value.trim()!=='')?'none':'inline';
+    
+    
+}
 function sortData(){
     console.log("clicked");
     
@@ -47,8 +54,8 @@ function renderTodos() {
                 <span>${todo.time}</span>
                 <span>${todo.priority}</span>
                 <div>
-                <button onclick="toggleComplete(${index})" color='green'>✔</button>
-                <button onclick="deleteTodo(${index})">✖</button>
+                <button onclick="toggleComplete(${index})">✔</button>
+                <button class='delete-btn' onclick="deleteTodo(${index})">✖</button>
                 </div>
                 `;
         list.appendChild(li);

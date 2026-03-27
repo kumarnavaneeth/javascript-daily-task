@@ -18,12 +18,13 @@ body{
        }
         li{
             display: flex;
-            justify-content: space-evenly;
+            justify-content: space-between;
         }
         #todo-list{
             display: flex;
             flex-direction: column;
-            gap:10px;
+            gap:5px;
+            margin-top: 10px;
         }              
         .completed{
             text-decoration: line-through;
@@ -31,18 +32,25 @@ body{
         }
        
         input{
-            padding: 13px;
+            padding: 5px;
             border-radius: 5px;
             border-color: rgb(191, 230, 153);
         }
         button{
-            padding: 10px;
+            padding: 5px;
             width:100px;
-            color:rgb(223, 13, 31);
+            color:rgb(20, 87, 4);
             border-radius: 5px;
-            border-color: darkgrey;
+            border:1px dark gray;
         }
         .heading h2{
             color:rgb(87, 38, 3);
+            text-align: center;
         }
-       
+       .error{
+        color:red;
+        margin-top: -5px;
+       }
+       .delete-btn buton{
+        color:red !important;
+       }
