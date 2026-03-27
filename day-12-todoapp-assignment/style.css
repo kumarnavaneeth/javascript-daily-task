@@ -36,8 +36,8 @@ body{
             border-color: rgb(191, 230, 153);
         }
         button{
-            padding: 12px;
-            width:50px;
+            padding: 10px;
+            width:100px;
             color:rgb(223, 13, 31);
             border-radius: 5px;
             border-color: darkgrey;

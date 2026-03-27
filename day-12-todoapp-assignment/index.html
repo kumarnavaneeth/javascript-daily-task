@@ -11,8 +11,11 @@
     </div>
 <div class="display-field">
     <input type="text" id='todo-input' placeholder="Enter Task">
-    <input type="number" id="todo-input-time" placeholder="Enter Time To complete">
+    <input type="time" id="todo-input-time" placeholder="Enter Time To complete">
+    <label><input type="radio"name="status" value="urgent">Urgent</label>
+    <label><input type="radio" name="status" value="NotUrgent">notUrgent</label>
     <button onclick="addTodo()">Add</button>
+    <button onclick="sortData()">Sort Data</button>
     <ul id="todo-list"></ul>
    </div>
 </body>
