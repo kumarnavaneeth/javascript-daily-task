@@ -12,7 +12,8 @@
 <div class="display-field">
     <input type="text" id='todo-input' onkeyup="validate()" placeholder="Enter Task">
     <div class="error" id="error">task is mandatory </div>
-    <input type="time" id="todo-input-time" placeholder="Enter Time To complete">
+    <input type="number" id="todo-input-time"onkeyup="validateTime()" placeholder="Enter Time To complete">
+    <div class="timeerror" id="timeerror">Hour cannot be negative</div>
     <label><input type="radio"name="status" value="urgent">Urgent</label>
     <label><input type="radio" name="status" value="NotUrgent">notUrgent</label>
     <button onclick="addTodo()">Add</button>

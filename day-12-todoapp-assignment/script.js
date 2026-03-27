@@ -10,25 +10,28 @@ function addTodo() {
     const inputTime = document.getElementById('todo-input-time');
     const time = inputTime.value.trim();
     if (time == '') return;
-    const radioInput=document.querySelector('input[name="status"]:checked')
-    const priority=radioInput?radioInput.value:"urgent";
-    todos.push({ text, time, priority,completed: false });
+    const radioInput = document.querySelector('input[name="status"]:checked')
+    const priority = radioInput ? radioInput.value : "urgent";
+    todos.push({ text, time, priority, completed: false });
     input.value = '';
     inputTime.value = '';
     saveTodos();
     renderTodos();
 }
-function validate(){
-   // console.log(event.target.value);
-    const errorDiv=document.getElementById('error');//instead of this we can declare globally
-    errorDiv.style.display=(event.target.value.trim()!=='')?'none':'inline';
-    
-    
+function validate() {
+    // console.log(event.target.value);
+    const errorDiv = document.getElementById('error');//instead of this we can declare globally
+    errorDiv.style.display = (event.target.value.trim() !== '') ? 'none' : 'inline';
 }
-function sortData(){
+function validateTime(){    
+    const errorTimeDiv=document.getElementById('timeerror');
+    const value=Number(event.target.value);
+    errorTimeDiv.style.display=(value <=0)?'inline':'none';
+}
+function sortData() {
     console.log("clicked");
-    
-    todos.sort((a,b)=>{
+
+    todos.sort((a, b) => {
         return a.text.localeCompare(b.text);
     })
     renderTodos();
