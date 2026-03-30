@@ -14,10 +14,17 @@
     <div class="error" id="error">task is mandatory </div>
     <input type="number" id="todo-input-time"onkeyup="validateTime()" placeholder="Enter Time To complete">
     <div class="timeerror" id="timeerror">Hour cannot be negative</div>
-    <label><input type="radio"name="status" value="urgent">Urgent</label>
-    <label><input type="radio" name="status" value="NotUrgent">notUrgent</label>
+    <!-- <label><input type="radio"name="status" value="urgent">Urgent</label>
+    <label><input type="radio" name="status" value="NotUrgent">notUrgent</label> -->
+    <select id="todo-priority">
+        <option value="high">High</option>
+        <option value="medium">Medium</option>
+        <option value="low">Low</option>
+    </select>
+    <div class="button-group">
     <button onclick="addTodo()">Add</button>
     <button onclick="sortData()">Sort Data</button>
+    </div>
     <ul id="todo-list"></ul>
    </div>
 </body>

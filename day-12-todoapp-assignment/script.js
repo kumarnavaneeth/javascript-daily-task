@@ -10,8 +10,7 @@ function addTodo() {
     const inputTime = document.getElementById('todo-input-time');
     const time = inputTime.value.trim();
     if (time == '') return;
-    const radioInput = document.querySelector('input[name="status"]:checked')
-    const priority = radioInput ? radioInput.value : "urgent";
+    const priority =document.getElementById('todo-priority').value;
     todos.push({ text, time, priority, completed: false });
     input.value = '';
     inputTime.value = '';
@@ -54,7 +53,7 @@ function renderTodos() {
         if (todo.completed) li.classList.add('completed');
         li.innerHTML = `
                 <span>${todo.text}</span>
-                <span>${todo.time}</span>
+                <span>${todo.time} hours</span>
                 <span>${todo.priority}</span>
                 <div>
                 <button onclick="toggleComplete(${index})">✔</button>
