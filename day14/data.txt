@@ -1,0 +1,2 @@
+writing file using nodejs
+appending new content..
