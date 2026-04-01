@@ -1,5 +1,6 @@
 const app = require('../server');
 const { expect } = require('chai');
+const { response } = require('express');
 const request = require("supertest");
 describe('GET/notes', () => {
     it('should return all notes', async () => {
@@ -13,12 +14,12 @@ describe('GET/notes', () => {
         const res = await request(app).get('/notes/123');
         expect(res.status).to.equal(404);
     });
-    it('should return note for the valid id',async()=>{
+    it('should return note for the valid id', async () => {
         console.log(request);
-        const res=await request(app).get('/notes/1774955527032');
+        const saveResponse=await request(app).post(/notes/).send({"title":"react","content":"setup"});
+        const res = await request(app).get('/notes/'+saveResponse.body.id);
         expect(res.status).to.equal(200);
-        
-    })
+    });
     it('test create new note', async () => {
         const res = await request(app).post('/notes/').send({ title: "task1", content: "this is a note" });
         expect(res.status).to.equal(201);
@@ -35,5 +36,34 @@ describe('GET/notes', () => {
         const res = await request(app).post('/notes/').send({ title: "", content: "" });
         expect(res.status).to.equal(400);
     });
-    it('should return')
+    it('test for successful deletion', async () => {
+        const saveResponse = await request(app).post('/notes/').send({ "title": "Testing", "content": "chaiMocha" });
+        const res = await request(app).delete('/notes/' + saveResponse.body.id);
+        expect(res.status).to.equal(200);
+    });
+    it('should return 404 if id for deletion is not found', async () => {
+        const response = await request(app).delete('/notes/01/');
+        expect(response.status).to.equal(404);
+    });
+    it("should return 400 if title is numeric", async () => {
+        const res = await request(app).post('/notes/').send({ "title": 1, "content": "hello world" });
+        expect(res.status).to.equal(400);
+    })
+    it("should return 400 if content is numeric", async () => {
+        const res = await request(app).post('/notes/').send({ "title": "tasks", "content": 12 });
+        expect(res.status).to.equal(400);
+    });
+    it('should return 400 if title and content is numeric', async () => {
+        const res = await request(app).post('/notes/').send({ "titl": 2, "content": 3 });
+        expect(res.status).to.equal(400);
+    });
+    it('it should rturn 200 for successful update', async () => {
+        const saveresponse = await request(app).post('/notes/').send({ "title": "test", "content": "chaimocha","status":"created"});
+        const res = await request(app).put('/notes/' + saveresponse.body.id).send({ "status": "created" });
+        expect(res.status).to.equal(200);
+    });
+    it('should return 404 for wrong updation id', async () => {
+        const res = await request(app).put('/notes/121').send({ "status": "created"});
+        expect(res.status).to.equal(404);
+    });
 })
