@@ -8,5 +8,8 @@ test("adds note on submit",()=>{
         target :{value: "Test Note"}
     });
     fireEvent.click(screen.getByText(/add/i));
-    expect(addNote).toHaveBeenCalledWith("Test Note");
+    expect(addNote).toHaveBeenCalledWith({
+        title:"Test Note",
+        status:"created"
+    });
 });
