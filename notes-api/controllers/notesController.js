@@ -15,7 +15,7 @@ exports.getNoteById = async (request, response) => {
 }
 
 exports.createNote = async (request, response) => {
-    const { title, content } = request.body;
+    const { title, content,status } = request.body;
     if (!title || !content) {
         return response.status(400).end();
     }
@@ -27,19 +27,25 @@ exports.createNote = async (request, response) => {
         id: Date.now(),
         title,
         content,
-        status: "created",
+        status: status || "created",
+        created:new Date().toISOString(),
     };
     notes.push(newNote);
     await service.saveNotes(notes);
     response.status(201).json(newNote);
 };
 
-
 exports.updateNote = async (req, res) => {
     const notes = await service.getNotes();
     const notexExists = notes.some(n => n.id == req.params.id);
     if (!notexExists) {
         return res.status(404).end();
+    }
+    if('created' in req.body){
+        return res.status(400).json({error:"cannot update createdDate"});
+    }
+    if(notexExists.status=='closed' && req.body.status!=='closed'){
+        return res.status(400).json({error:"cannot modify status"});
     }
     const updated = notes.map(n =>
         n.id == req.params.id ? { ...n, ...req.body } : n
