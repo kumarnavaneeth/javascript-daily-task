@@ -57,7 +57,7 @@ exports.updateNote = async (req, res) => {
 
 exports.deleteNote = async (request, response) => {
     const notes = await service.getNotes();
-    const filtered = notes.filter(n => n.id != request.params.id);//not matching ids will be saved,entered id is removed
+    const filtered = notes.filter(n => n.id != Number(request.params.id));//not matching ids will be saved,entered id is removed
     if (notes.length == filtered.length) {
         return response.status(404).end();
     }
