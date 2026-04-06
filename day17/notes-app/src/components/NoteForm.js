@@ -5,17 +5,32 @@ function NoteForm({ addNote }) {
     const [note, setNote] = useState({
         title: "",
         content:"",
-        status: "created"
+        status: "created",
+        dateTime:""
     });
     const handleSubmit =async (e) => {
         e.preventDefault();
-        if (!note.title.trim()|| !note.content.trim()) {
+        if (!note.title.trim()) {
             setError("invalid title input");
             return;
         }
-        const saveNote = await sendPostRequest(note);
+        if(!note.content.trim()){
+            setError("invalid content input");
+            return;
+        }
+        if(!note.dateTime.trim()){
+            setError("date time is required");
+            return;
+        }
+        const noteToSend={
+            ...note,
+            dateTime:note.dateTime
+            ? new Date(note.dateTime).toISOString()
+            :null
+        }
+        const saveNote = await sendPostRequest(noteToSend);
         addNote(saveNote);
-        setNote({ title: "",content:"", status: "created" });
+        setNote({ title: "",content:"", status: "created",dateTime:"" });
         setError("");
     }
     const sendPostRequest=async (noteData)=>{
@@ -45,13 +60,18 @@ function NoteForm({ addNote }) {
             />
             <input name='content'
             value={note.content}
-            placeholder="enter contnt"
+            placeholder="enter content"
             onChange={handleChange}
             />
             <label>Status<input name="status"
                 type="checkbox"
                 checked={note.status === 'closed'}
                 onChange={handleChange}></input></label>
+            <input type='datetime-local'
+            name='dateTime'
+            value={note.dateTime}
+            onChange={handleChange}
+            ></input>
             <button>Add</button>
             {error && <p style={{color:'red'}}>{error}</p>}
         </form>
