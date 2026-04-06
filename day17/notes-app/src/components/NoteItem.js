@@ -9,7 +9,6 @@ return(
         new Date(note.dateTime).toLocaleString("en-GB") : "no date selected" }</td>
         <td><button onClick={()=>deleteNote(note.id)}>Delete</button></td>
     </tr>
-
 );
 }
 export default NoteItem;
