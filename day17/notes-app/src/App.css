@@ -1,0 +1,86 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f2f5;
+  margin: 0;
+  padding: 0;
+}
+
+.notes-app {
+  max-width: 400px;
+  margin: 30px auto;
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 12px;
+}
+
+h1 {
+  text-align: center;
+  color: #181616;
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+input[type="text"],
+input[type="datetime-local"] {
+  padding: 5x;
+  font-size: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+label {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+button {
+  padding: 5px 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+form button{
+  background-color: #235525;
+  color: white;
+}
+
+.notes-app button {
+  background-color: #ad1909;
+  color: white;
+}
+
+p {
+  color: red;
+  font-weight: bold;
+}
+
+.navbar{
+  background-color: #f3f3ee;
+  padding:12px 20px;
+  display: flex;
+  gap:90px;
+  justify-content: center;
+  align-items: center;
+  border-bottom:1px solid rgb(212, 205, 205);
+}
+.navbar a{
+  color:rgb(70, 67, 63);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: bold;
+}
+.notes-app   table,th,td{
+  border: 1.5px solid rgb(36, 34, 34);
+  border-collapse: collapse;
+  padding:5px 8px;
+}

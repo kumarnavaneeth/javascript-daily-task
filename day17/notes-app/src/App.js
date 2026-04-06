@@ -3,13 +3,11 @@ import './App.css';
 import axios from 'axios';
 import NoteForm from './components/NoteForm';
 import NoteList from './components/NoteList';
+import Navbar from './components/Navbar';
+import { BrowserRouter,Route, Routes } from 'react-router-dom';
 
 function App() {
   const [notes, setNotes] = useState([]);
-  // const addNote=(text)=>{
-  //   const newNote ={id:Date.now(),text};
-  //   setNotes([...notes,newNote]);
-  // };
   useEffect(() => {
     fetchNotes();
   }, []);
@@ -21,20 +19,26 @@ function App() {
 
   const addNote = (note) => {
     const newNote = { ...note };
-    // newNote.id = Date.now();
       setNotes([...notes, newNote]);
   }
   const deleteNote =async (id) => {
     await axios.delete(`http://localhost:3001/notes/${id}`)
     fetchNotes();
   };
-  return (
+  return(
     <div>
-      <h1>Notes App</h1>
-      <NoteForm addNote={addNote} />
-      <NoteList notes={notes} deleteNote={deleteNote} />
+      <BrowserRouter>
+       <Navbar/>
+       <div className='notes-app'>
+        <h1>Notes App</h1>
+      <Routes>
+        <Route path="/add" element={<NoteForm addNote={addNote}/>}/>
+        <Route path="/" element={<NoteList notes={notes} deleteNote={deleteNote}/>}/>
+      </Routes>
+      </div>
+      </BrowserRouter>
     </div>
-  );
+  )
 }
 
 export default App;

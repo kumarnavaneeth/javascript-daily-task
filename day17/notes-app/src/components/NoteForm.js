@@ -1,7 +1,9 @@
 import { useState } from "react";
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 function NoteForm({ addNote }) {
     const [error, setError] = useState("");
+    const navigate=useNavigate();
     const [note, setNote] = useState({
         title: "",
         content:"",
@@ -32,6 +34,7 @@ function NoteForm({ addNote }) {
         addNote(saveNote);
         setNote({ title: "",content:"", status: "created",dateTime:"" });
         setError("");
+        navigate('/');
     }
     const sendPostRequest=async (noteData)=>{
         const response =await axios.post("http://localhost:3001/notes",noteData,{

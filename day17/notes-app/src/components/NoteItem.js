@@ -1,13 +1,15 @@
 function NoteItem({note,deleteNote}){
 return(
-    <li>
-        {note.title},
-        {note.content},
-        {note.status}
-        {note.dateTime?
-        new Date(note.dateTime).toLocaleString("en-GB") : "no date selected" }
-        <button onClick={()=>deleteNote(note.id)}>Delete</button>
-    </li>
+
+    <tr>
+        <td>{note.title}</td>
+        <td>{note.content}</td>
+        <td>{note.status}</td>
+        <td>{note.dateTime?
+        new Date(note.dateTime).toLocaleString("en-GB") : "no date selected" }</td>
+        <td><button onClick={()=>deleteNote(note.id)}>Delete</button></td>
+    </tr>
+
 );
 }
 export default NoteItem;
