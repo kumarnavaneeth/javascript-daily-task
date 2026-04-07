@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 function NoteForm({ addNote }) {
     // const [showModal,setShowModal]=useState(false);
+    const MaxTitleLength=20;
+    const MaxContentLength=20;
     const [error, setError] = useState("");
     const navigate = useNavigate();
     const [note, setNote] = useState({
@@ -48,15 +50,17 @@ function NoteForm({ addNote }) {
     }
     const handleChange = (event) => {
         const { name, value, type, checked } = event.target;
-        if((name=='title'||name=='content') && value.length>20){
-            setError(`${name} cannot contain more that 20 characters`);
+        if((name=='title') && value.length>MaxTitleLength){
+            return;
+        }
+        if(name=='content'&& value.length>MaxContentLength){
             return;
         }
         setNote((prevNote) => ({
             ...prevNote,
             [name]: type === "checkbox" ? (checked ? "closed" : "created") : value,
         }));
-        if (name === 'title' && value.trim()) {
+        if (name === 'title' || name=='content' && value.trim()) {
             setError("");
         }
     }
@@ -67,11 +71,13 @@ function NoteForm({ addNote }) {
                 placeholder="enter note"
                 onChange={handleChange}
             />
+            <small>{note.title.length}/{MaxTitleLength}</small>
             <input name='content'
                 value={note.content}
                 placeholder="enter content"
                 onChange={handleChange}
             />
+            <small>{note.content.length}/{MaxContentLength}</small>
             <label>Status<input name="status"
                 type="checkbox"
                 checked={note.status === 'closed'}

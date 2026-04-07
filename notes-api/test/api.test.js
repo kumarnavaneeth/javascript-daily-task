@@ -11,59 +11,64 @@ describe('GET/notes', () => {
     });
     it('should return 404 for non existent noteID', async () => {
         console.log(request);
-        const res = await request(app).get('/notes/123');
-        expect(res.status).to.equal(404);
+        const response = await request(app).get('/notes/123');
+        expect(response.status).to.equal(404);
     });
     it('should return note for the valid id', async () => {
         console.log(request);
         const saveResponse=await request(app).post(/notes/).send({"title":"react","content":"setup"});
-        const res = await request(app).get('/notes/'+saveResponse.body.id);
-        expect(res.status).to.equal(200);
+        const response = await request(app).get('/notes/'+saveResponse.body.id);
+        expect(response.status).to.equal(200);
     });
     it('test create new note', async () => {
-        const res = await request(app).post('/notes/').send({ title: "task1", content: "this is a note" });
-        expect(res.status).to.equal(201);
+        const response = await request(app).post('/notes/').send({ title: "task1", content: "this is a note" });
+        expect(response.status).to.equal(201);
     });
     it('should return 400 if title is empty', async () => {
-        const res = await request(app).post('/notes/').send({ title: "", content: "some task" });
-        expect(res.status).to.equal(400);
+        const response = await request(app).post('/notes/').send({ title: "", content: "some task" });
+        expect(response.status).to.equal(400);
     });
     it('should return 400 if content is empty', async () => {
         const res = await request(app).post('/notes/').send({ title: "task2", content: "" });
         expect(res.status).to.equal(400);
     })
     it('should return 400 if both tile and content is empty', async () => {
-        const res = await request(app).post('/notes/').send({ title: "", content: "" });
-        expect(res.status).to.equal(400);
+        const response = await request(app).post('/notes/').send({ title: "", content: "" });
+        expect(response.status).to.equal(400);
     });
     it('test for successful deletion', async () => {
         const saveResponse = await request(app).post('/notes/').send({ "title": "Testing", "content": "chaiMocha" });
-        const res = await request(app).delete('/notes/' + saveResponse.body.id);
-        expect(res.status).to.equal(200);
+        const response = await request(app).delete('/notes/' + saveResponse.body.id);
+        expect(response.status).to.equal(200);
     });
     it('should return 404 if id for deletion is not found', async () => {
         const response = await request(app).delete('/notes/01/');
         expect(response.status).to.equal(404);
     });
     it("should return 400 if title is numeric", async () => {
-        const res = await request(app).post('/notes/').send({ "title": 1, "content": "hello world" });
-        expect(res.status).to.equal(400);
+        const response = await request(app).post('/notes/').send({ "title": 1, "content": "hello world" });
+        expect(response.status).to.equal(400);
     })
     it("should return 400 if content is numeric", async () => {
-        const res = await request(app).post('/notes/').send({ "title": "tasks", "content": 12 });
-        expect(res.status).to.equal(400);
+        const response = await request(app).post('/notes/').send({ "title": "tasks", "content": 12 });
+        expect(response.status).to.equal(400);
     });
     it('should return 400 if title and content is numeric', async () => {
-        const res = await request(app).post('/notes/').send({ "titl": 2, "content": 3 });
-        expect(res.status).to.equal(400);
+        const response = await request(app).post('/notes/').send({ "titl": 2, "content": 3 });
+        expect(response.status).to.equal(400);
     });
     it('it should rturn 200 for successful update', async () => {
         const saveresponse = await request(app).post('/notes/').send({ "title": "test", "content": "chaimocha","status":"created"});
-        const res = await request(app).put('/notes/' + saveresponse.body.id).send({ "status": "created" });
-        expect(res.status).to.equal(200);
+        const response = await request(app).put('/notes/' + saveresponse.body.id).send({ "status": "created" });
+        expect(response.status).to.equal(200);
     });
     it('should return 404 for wrong updation id', async () => {
-        const res = await request(app).put('/notes/121').send({ "status": "created"});
-        expect(res.status).to.equal(404);
+        const response = await request(app).put('/notes/121').send({ "status": "created"});
+        expect(response.status).to.equal(404);
+    });
+    it('should display 400 for date modification',async()=>{
+        const saveResponse=await request(app).post('/notes/').send({"title":"task8","content":"datemodify"});
+        const response=await request(app).put('/notes/'+saveResponse.body.id).send({"created":"2025-01-23"});
+        expect(response.status).to.equal(400);
     });
 })
