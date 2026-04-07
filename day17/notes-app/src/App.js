@@ -48,6 +48,7 @@ const cancelDelete=async()=>{
        <Navbar/>
        <div className='notes-app'>
         <h1>Notes App</h1>
+
       <Routes>
         <Route path="/add" element={<NoteForm addNote={addNote}/>}/>
         <Route path="/" element={<NoteList notes={notes} deleteNote={confirmDelete}/>}/>

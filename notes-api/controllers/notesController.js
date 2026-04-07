@@ -15,7 +15,7 @@ exports.getNoteById = async (request, response) => {
 }
 
 exports.createNote = async (request, response) => {
-    const { title, content,status,dateTime } = request.body;
+    const { title, content,status,dateTime,priority } = request.body;
     if (!title || !content) {
         return response.status(400).end();
     }
@@ -29,7 +29,8 @@ exports.createNote = async (request, response) => {
         content,
         status: status || "created",
         created:new Date().toISOString(),
-        dateTime:dateTime||null
+        dateTime:dateTime||null,
+        priority
     };
     notes.push(newNote);
     await service.saveNotes(notes);

@@ -6,7 +6,7 @@ body {
 }
 
 .notes-app {
-  max-width: 500px;
+  max-width: 600px;
   margin: 30px auto;
   padding: 10px;
   background-color: #ffffff;
@@ -80,9 +80,11 @@ p {
   font-weight: bold;
 }
 .notes-app   table,th,td{
+  width:100%;
   border: 1.5px solid rgb(36, 34, 34);
   border-collapse: collapse;
   padding:5px 8px;
+  color:#032407;
 }
 
 .modal-display {
@@ -94,6 +96,7 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #bdb4b4;
 }
 
 .modal {
@@ -106,4 +109,10 @@ p {
 
 .modal button {
   margin: 10px;
+}
+.search-field input[type="search"]{
+  padding: 6px;
+  width:100%;
+  border-radius: 5px;
+  border-color: #3dcf42;
 }
