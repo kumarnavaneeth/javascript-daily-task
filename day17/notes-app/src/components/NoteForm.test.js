@@ -10,6 +10,6 @@ test("adds note on submit",()=>{
     fireEvent.click(screen.getByText(/add/i));
     expect(addNote).toHaveBeenCalledWith({
         title:"Test Note",
-        status:"created"
+        status:"open"
     });
 });

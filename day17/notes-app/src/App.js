@@ -5,6 +5,7 @@ import NoteForm from './components/NoteForm';
 import NoteList from './components/NoteList';
 import Navbar from './components/Navbar';
 import { BrowserRouter,Route, Routes } from 'react-router-dom';
+import StatusBarChart from './components/StatusBarChart';
 
 function App() {
   const [notes, setNotes] = useState([]);
@@ -23,10 +24,7 @@ function App() {
     const newNote = { ...note };
       setNotes([...notes, newNote]);
   }
-  // const deleteNote =async (id) => {
-  //   await axios.delete(`http://localhost:3001/notes/${id}`)
-  //   fetchNotes();
-  // };
+
 const confirmDelete=async(id)=>{
   setSelectedId(id);
   setShowModal(true);
@@ -50,8 +48,14 @@ const cancelDelete=async()=>{
         <h1>Notes App</h1>
 
       <Routes>
-        <Route path="/add" element={<NoteForm addNote={addNote}/>}/>
-        <Route path="/" element={<NoteList notes={notes} deleteNote={confirmDelete}/>}/>
+        <Route path="/add" element={
+          <NoteForm addNote={addNote}/>
+      }/>
+        <Route path="/" element={
+          <>
+          <NoteList notes={notes} deleteNote={confirmDelete}/>
+          </>
+          }/>
       </Routes>
       </div>
       {showModal&&

@@ -96,7 +96,7 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #bdb4b4;
+  background-color:rgba(0,0,0,0.5);
 }
 
 .modal {
@@ -114,5 +114,16 @@ p {
   padding: 6px;
   width:100%;
   border-radius: 5px;
-  border-color: #3dcf42;
+  border-color: #101610;
+}
+.sort-button button{
+  background-color: #23a33f;
+  margin:10px 2px;
+  padding:6px;
+  color:rgb(241, 233, 233);
+
+}
+.barchart{
+  width: 50%;
+  height:150px;
 }

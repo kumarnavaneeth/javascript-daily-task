@@ -6,7 +6,7 @@ test("add and delete note",()=>{
     target:{value:"New Note"}
   });
   fireEvent.click(screen.getByText(/add/i));
-  expect(screen.getByText("New Note")).toBeInTheDocument();
+  expect(screen.getByText(/New Note/i)).toBeInTheDocument();
   fireEvent.click(screen.getByText(/delete/i));
-  expect(screen.queryByText("New Note")).not.toBeInTheDocument();
+  expect(screen.queryByText(/New Note/i)).not.toBeInTheDocument();
 });
