@@ -5,7 +5,6 @@ import NoteForm from './components/NoteForm';
 import NoteList from './components/NoteList';
 import Navbar from './components/Navbar';
 import { BrowserRouter,Route, Routes } from 'react-router-dom';
-import StatusBarChart from './components/StatusBarChart';
 
 function App() {
   const [notes, setNotes] = useState([]);
@@ -52,9 +51,7 @@ const cancelDelete=async()=>{
           <NoteForm addNote={addNote}/>
       }/>
         <Route path="/" element={
-          <>
           <NoteList notes={notes} deleteNote={confirmDelete}/>
-          </>
           }/>
       </Routes>
       </div>

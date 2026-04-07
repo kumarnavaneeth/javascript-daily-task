@@ -1,6 +1,6 @@
 import { useState } from "react";
 import NoteItem from "./NoteItem"
-import StatusBarChart from "./StatusBarChart";
+import NotesbarChart from "./NotesBarChart";
 
 function NoteList({ notes, deleteNote }) {
 const[searchItem,setSearchItem]=useState('');
@@ -52,7 +52,7 @@ const handleSort=(type)=>{
             ))}
             </tbody>
         </table>
-         <StatusBarChart notes={notes}/>
+<NotesbarChart notes={notes}/>
         </div>
         
     );
