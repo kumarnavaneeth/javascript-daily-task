@@ -1,24 +1,35 @@
 import { useState } from "react";
 
-function InputForm({ questions }) {
-    const [selectedQuestion, setSelectedQuestion] = useState('');
-
+function InputForm({ questions,selected,onchange,selectedQuestions,hideAnswer }) {
+const [answer,setAnswer]=useState('');
+const [confirmAnswer,setConfirmAnswer]=useState('');
+const filteredQuestions=questions.filter(
+    (question)=>
+        !selectedQuestions.includes(question.id.toString())||
+         question.id.toString() === selected
+)
     return (
         <>
-            <select value={selectedQuestion}
-                onChange={(e) => setSelectedQuestion(e.target.value)}
+            <select value={selected}
+                onChange={(e) => onchange(e.target.value)}
             >
                 <option value="">please select option</option>
-                {questions.map((question) => {
-                    return <option value={question.id}>{question.question}</option>
-                })}
+                {filteredQuestions.map((question) => (
+                    <option key={question.id} value={question.id}>{question.question}</option>
+                ))}
             </select>
             <br/>
-            <input type="text"
+            <input type={hideAnswer? "password":"text"}
              placeholder="Answer"
+             value={answer}
+             onChange={(e)=>setAnswer(e.target.value)}
              />
-             <input type="text"
-             placeholder="Confirm Answer"/>
+             <input type={hideAnswer? "password":"text"}
+             placeholder="Confirm Answer"
+             value={confirmAnswer}
+             onChange={(e)=>setConfirmAnswer(e.target.value)}
+             />
+             <br/>
         </>
     )
 }
