@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "question": "what is your mothers first Name?"
+    },
+    {
+        "id": 2,
+        "question": "what is your place of birth?"
+    },
+    {
+        "id": 3,
+        "question": "what is your date of birth?"
+    },
+    {
+        "id": 4,
+        "question": "which college you are graduated from?"
+    },
+    {
+        "id":5,
+        "question":"enter you favourite color"
+    }
+]
