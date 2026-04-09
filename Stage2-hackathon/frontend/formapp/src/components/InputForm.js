@@ -4,7 +4,7 @@ function InputForm({ questions,selected,onchange,selectedQuestions,hideAnswer,in
   answer,
   confirmAnswer,
   onAnswer,
-  onConfirmAnswer }) {
+  onConfirmAnswer,error }) {
 
 const filteredQuestions=questions.filter(
     (question)=>
@@ -13,6 +13,7 @@ const filteredQuestions=questions.filter(
 )
     return (
         <>
+        <div className="form-group">
             <select value={selected ?? ''}
                 onChange={(e) => onchange(Number(e.target.value))}
             >
@@ -21,7 +22,7 @@ const filteredQuestions=questions.filter(
                     <option key={question.id} value={question.id}>{question.question}</option>
                 ))}
             </select>
-            <br/>
+            <div className="input-row">
             <input type={hideAnswer? "password":"text"}
              placeholder="Answer"
              value={answer}
@@ -32,8 +33,12 @@ const filteredQuestions=questions.filter(
              value={confirmAnswer}
              onChange={(e)=>onConfirmAnswer(index,e.target.value)}
              />
-
-             <br/>
+             </div>
+            {error && (
+                <p className="error-text">{error}</p>
+            )
+            }
+             </div>
         </>
     )
 }
